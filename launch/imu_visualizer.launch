@@ -1,0 +1,15 @@
+<launch>
+
+    <arg name="model" default="$(find imu-visualizer)/urdf/boat.urdf.xacro"/>
+    <arg name="gui" default="true" />
+    
+    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+    </node>
+
+    <node name="imu_visualizer" pkg="imu-visualizer" type="imu_visualizer.py" >
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find imu-visualizer)/rviz/6dof.rviz" required="true"/>
+
+</launch>
