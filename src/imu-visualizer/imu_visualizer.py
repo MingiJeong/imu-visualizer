@@ -20,8 +20,8 @@ from nav_msgs.msg import Odometry
 
 
 
-def handle_imu_pose(msg):
-    br = tf2_ros.TransformBroadcaster()
+def handle_imu_pose(msg, br):
+    
     t = geometry_msgs.msg.TransformStamped()
 
     t.header.stamp = rospy.Time.now()
@@ -35,11 +35,11 @@ def handle_imu_pose(msg):
     t.transform.rotation.z = msg.pose.pose.orientation.z
     t.transform.rotation.w = msg.pose.pose.orientation.w
 
-    print("here")
-
     br.sendTransform(t)
 
 if __name__ == '__main__':
       rospy.init_node('tf_broadcaster_imu')
-      rospy.Subscriber('/robot_0/odom', Odometry, handle_imu_pose)
+      br = tf2_ros.TransformBroadcaster()
+    #   rospy.Subscriber('/robot_0/odom', Odometry, handle_imu_pose)
+      rospy.Subscriber('/robot_0/mavros/local_position/odom', Odometry, handle_imu_pose, queue_size=1, callback_args=br)
       rospy.spin()
