@@ -32,6 +32,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
+        <!-- <mesh filename="package://imu-visualizer/mesh/surfacevehicle_gen2.dae" scale="0.005 0.005 0.005"/>  -->
         <mesh filename="package://imu-visualizer/mesh/boat.stl" scale="0.005 0.005 0.005"/> 
         <!-- <mesh filename="package://imu-visualizer/mesh/gen2_20210115-hydrotest-weight.dae" scale="0.005 0.005 0.005"/>  -->
       </geometry>
